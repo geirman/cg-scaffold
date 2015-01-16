@@ -1,0 +1,1 @@
+All (png,svg,jpg,gif) images placed in this directory will be optimized and moved to /app/assets/img/

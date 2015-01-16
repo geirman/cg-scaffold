@@ -1,0 +1,1 @@
+Both readable and minifided versions of all *.js files will be concatinated into a single file and placed in /app/assets/js/scripts.js 

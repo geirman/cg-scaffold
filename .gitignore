@@ -1,0 +1,7 @@
+# Git should ignore the following file patterns
+
+*~
+*.log
+/node_modules/
+/app
+.DS_Store

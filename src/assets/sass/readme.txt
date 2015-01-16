@@ -1,0 +1,1 @@
+Both readable and minifided versions of all *.scss files will be concatinated into a single file and placed in /app/assets/css/styles.css 
