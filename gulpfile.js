@@ -3,15 +3,16 @@ var gulp     	 = require('gulp'),
 	browserSync  = require('browser-sync'),
 	uglify       = require('gulp-uglify'),
 	sass         = require('gulp-sass'),
-	sourcemaps	 = require('gulp-sourcemaps'),
+	sourcemaps   = require('gulp-sourcemaps'),
 	autoprefixer = require('gulp-autoprefixer'),
 	concat       = require('gulp-concat'),
 	jshint       = require('gulp-jshint'),
 	minifycss    = require('gulp-minify-css'),
 	imagemin     = require('gulp-imagemin'),
 	cache        = require('gulp-cache'),
-	rename		 = require('gulp-rename'),
-	del 		 = require('del'),
+	rename       = require('gulp-rename'),
+	del          = require('del'),
+	notify       = require('gulp-notify'),
 	reload       = browserSync.reload;
 
 var paths = {
@@ -40,7 +41,8 @@ gulp.task('serve', function(){
 gulp.task('html', function(){
 	return gulp.src( paths.html )
 		.pipe( gulp.dest(paths.app_root +'/') )
-		.pipe( reload({stream:true}) );
+		.pipe( reload({stream:true}) )
+		.pipe( notify('HTML task complete') );
 });
 
 gulp.task('styles', function(){
@@ -54,7 +56,8 @@ gulp.task('styles', function(){
 		.pipe( rename({ suffix: '.min' }) )
 		.pipe( minifycss() )
 		.pipe( gulp.dest(paths.app_root +'/assets/css') )
-		.pipe( reload({stream:true}) );
+		.pipe( reload({stream:true}) )
+		.pipe( notify('STYLES task complete') );
 });
 
 gulp.task('scripts', function(){
@@ -66,14 +69,16 @@ gulp.task('scripts', function(){
 		.pipe( rename({suffix: '.min' }) )
 		.pipe( uglify() )
 		.pipe( gulp.dest(paths.app_root +'/assets/js') )
-		.pipe( reload({stream:true}) );
+		.pipe( reload({stream:true}) )
+		.pipe( notify('SCRIPTS task complete') );
 });
 
 gulp.task('images', function(){
 	return gulp.src(paths.images +'.{gif,jpg,jpeg,png,svg}')
 		.pipe( cache( imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }) ) )
 		.pipe( gulp.dest( paths.app_root +'/assets/img') )
-		.pipe( reload({stream:true}) );
+		.pipe( reload({stream:true}) )
+		.pipe( notify('IMAGES task complete') );
 });
 
 gulp.task('watch', function(){
