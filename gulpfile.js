@@ -47,11 +47,11 @@ gulp.task('html', function(){
 
 gulp.task('styles', function(){
 	return gulp.src( paths.styles )
-		// .pipe( sourcemaps.init() )
-		.pipe( concat('styles.css') )
-		.pipe( sass() )
-		// .pipe( sourcemaps.write('app/assets/css/maps') )
-		.pipe( autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4') )
+		.pipe( sourcemaps.init() )
+			.pipe( sass() )
+			.pipe( autoprefixer('> 5%, last 2 versions') )
+			.pipe( concat('styles.css') )
+		.pipe( sourcemaps.write('./source-maps') )
 		.pipe( gulp.dest(paths.app_root +'/assets/css') )
 		.pipe( rename({ suffix: '.min' }) )
 		.pipe( minifycss() )
